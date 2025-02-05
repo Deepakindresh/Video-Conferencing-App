@@ -1,6 +1,7 @@
 const initialState = {
 	id: null,
 	displayName: null,
+	presenter: false,
 	displayNameSet: false,
 	device: null,
 	canSendMic: false,

@@ -36,6 +36,7 @@ export default class RoomClient {
 		roomId,
 		peerId,
 		displayName,
+		presenter,
 		device,
 		handlerName,
 		forceTcp,
@@ -55,10 +56,11 @@ export default class RoomClient {
 		consumerReplicas,
 	}) {
 		logger.debug(
-			'constructor() [roomId:"%s", peerId:"%s", displayName:"%s", device:%s]',
+			'constructor() [roomId:"%s", peerId:"%s", displayName:"%s", presenter:"%s", device:%s]',
 			roomId,
 			peerId,
 			displayName,
+			presenter,
 			device.flag
 		);
 
@@ -69,6 +71,10 @@ export default class RoomClient {
 		// Display name.
 		// @type {String}
 		this._displayName = displayName;
+
+		// Whether we are the presenter.
+		// @type {Boolean}
+		this._presenter = presenter;
 
 		// Device info.
 		// @type {Object}
@@ -515,7 +521,7 @@ export default class RoomClient {
 
 									store.dispatch(
 										requestActions.notify({
-											title: `${sendingPeer.displayName} says:`,
+											title: `${sendingPeer.displayName} ${sendingPeer.presenter ? " (Presenter)": ""} says:`,
 											text: message,
 											timeout: 5000,
 										})
@@ -606,7 +612,7 @@ export default class RoomClient {
 
 					store.dispatch(
 						requestActions.notify({
-							text: `${peer.displayName} has joined the room`,
+							text: `${peer.displayName} ${peer.presenter ? " (Presenter)": ""} has joined the room`,
 						})
 					);
 
@@ -2245,6 +2251,7 @@ export default class RoomClient {
 			// NOTE: Don't send our RTP capabilities if we don't want to consume.
 			const { peers } = await this._protoo.request('join', {
 				displayName: this._displayName,
+				presenter: this._presenter,
 				device: this._device,
 				rtpCapabilities: this._consume
 					? this._mediasoupDevice.rtpCapabilities

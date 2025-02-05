@@ -16,6 +16,7 @@ export const Device = PropTypes.shape({
 export const Me = PropTypes.shape({
 	id: PropTypes.string.isRequired,
 	displayName: PropTypes.string,
+	presenter: PropTypes.bool.isRequired,
 	displayNameSet: PropTypes.bool.isRequired,
 	device: Device.isRequired,
 	canSendMic: PropTypes.bool.isRequired,
@@ -45,6 +46,7 @@ export const DataProducer = PropTypes.shape({
 export const Peer = PropTypes.shape({
 	id: PropTypes.string.isRequired,
 	displayName: PropTypes.string,
+	presenter: PropTypes.bool.isRequired,
 	device: Device.isRequired,
 	consumers: PropTypes.arrayOf(PropTypes.string).isRequired,
 });

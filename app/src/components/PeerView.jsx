@@ -462,6 +462,7 @@ export default class PeerView extends React.Component {
 				<audio
 					ref={this._audioElemRef}
 					autoPlay
+					// muted={true}
 					muted={isMe || audioMuted}
 					controls={false}
 				/>

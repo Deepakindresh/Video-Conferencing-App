@@ -178,6 +178,8 @@ class Me extends React.Component {
 		if (!prevProps.me.displayNameSet && this.props.me.displayNameSet)
 			ReactTooltip.hide(this._rootNode);
 	}
+
+	// presenters might be needed here
 }
 
 Me.propTypes = {

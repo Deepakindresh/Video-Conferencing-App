@@ -77,6 +77,7 @@ async function run() {
 	let roomId = urlParser.query.roomId;
 	let displayName =
 		urlParser.query.displayName || (cookiesManager.getUser() || {}).displayName;
+	let presenter = urlParser.query.presenter || cookiesManager.getPresenter() || 'false';
 	const handlerName = urlParser.query.handlerName || urlParser.query.handler;
 	const forceTcp = urlParser.query.forceTcp === 'true';
 	const produce = urlParser.query.produce !== 'false';
@@ -186,6 +187,7 @@ async function run() {
 		roomId,
 		peerId,
 		displayName,
+		presenter,
 		device,
 		handlerName: handlerName,
 		forceTcp,
