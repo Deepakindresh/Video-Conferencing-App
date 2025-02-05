@@ -127,6 +127,23 @@ class Room extends React.Component {
 							data-tip="Restart ICE"
 							onClick={() => roomClient.restartIce()}
 						/>
+
+						<div
+							className={classnames('button', 'presenter-switch', {
+								on: me.presenter,
+							})}
+							data-tip={me.presenter ? "Set as participant" : "Set as presenter"}
+							onClick={() => {
+								me.presenter
+									? roomClient.setParticipant()
+									: roomClient.setPresenter();
+
+								console.log("Presenter state: " + me.presenter);
+							}}
+						/>
+
+						
+
 					</div>
 
 					<Stats />

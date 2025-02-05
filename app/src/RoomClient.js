@@ -1481,6 +1481,23 @@ export default class RoomClient {
 		store.dispatch(stateActions.setAudioMutedState(false));
 	}
 
+	// Check mutemic as well might need later
+
+	async setPresenter(){
+		store.dispatch(stateActions.setPresenterState(true));
+		// Cookies change
+		let presenter = true;
+		cookiesManager.setCookiePresenter({ presenter });
+	}
+
+	async setParticipant(){
+		store.dispatch(stateActions.setPresenterState(false));
+		// Cookies change
+		let presenter = false;
+		cookiesManager.setCookiePresenter({ presenter });
+		this.muteMic();
+	}
+
 	async restartIce() {
 		logger.debug('restartIce()');
 
@@ -2251,7 +2268,7 @@ export default class RoomClient {
 			// NOTE: Don't send our RTP capabilities if we don't want to consume.
 			const { peers } = await this._protoo.request('join', {
 				displayName: this._displayName,
-				presenter: this._presenter,
+				presenter: this._presenter || false,
 				device: this._device,
 				rtpCapabilities: this._consume
 					? this._mediasoupDevice.rtpCapabilities

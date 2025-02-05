@@ -12,11 +12,11 @@ export function setUser({ displayName }) {
 	jsCookie.set(USER_COOKIE, { displayName });
 }
 
-export function setPresenter({ presenter }) {
+export function setCookiePresenter({ presenter }) {
 	jsCookie.set(PRESENTER_COOKIE, { presenter });
 }
 
-export function getPresenter() {
+export function getCookiePresenter() {
 	return jsCookie.getJSON(PRESENTER_COOKIE);
 }
 

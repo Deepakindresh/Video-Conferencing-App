@@ -33,6 +33,7 @@ class Me extends React.Component {
 		if (!me.canSendMic) micState = 'unsupported';
 		else if (!audioProducer) micState = 'unsupported';
 		else if (!audioProducer.paused) micState = 'on';
+		else if (!me.presenter) micState = 'off';
 		else micState = 'off';
 
 		let webcamState;
@@ -73,14 +74,14 @@ class Me extends React.Component {
 			>
 				{connected && (
 					<div className="controls">
-						<div
+						{me.presenter && <div
 							className={classnames('button', 'mic', micState)}
 							onClick={() => {
 								micState === 'on'
 									? roomClient.muteMic()
 									: roomClient.unmuteMic();
 							}}
-						/>
+						/>}
 
 						<div
 							className={classnames('button', 'webcam', webcamState, {

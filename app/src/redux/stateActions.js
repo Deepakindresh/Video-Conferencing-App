@@ -54,10 +54,10 @@ export const setRoomFaceDetection = flag => {
 	};
 };
 
-export const setMe = ({ peerId, displayName, displayNameSet, device }) => {
+export const setMe = ({ peerId, displayName, displayNameSet, presenter, device }) => {
 	return {
 		type: 'SET_ME',
-		payload: { peerId, displayName, displayNameSet, device },
+		payload: { peerId, displayName, displayNameSet, presenter, device },
 	};
 };
 
@@ -102,6 +102,15 @@ export const setAudioMutedState = enabled => {
 		payload: { enabled },
 	};
 };
+
+
+export const setPresenterState = enabled => {
+	return {
+		type: 'SET_PRESENTER_STATE',
+		payload: { enabled },
+	};
+};
+
 
 export const setRestartIceInProgress = flag => {
 	return {

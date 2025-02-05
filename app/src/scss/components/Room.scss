@@ -311,6 +311,14 @@
 			&.restart-ice {
 				background-image: url('/images/icon_restart_ice_white.svg');
 			}
+			
+			&.presenter-switch {
+				background-image: url('/images/presenter-switch.svg');
+
+				&.on {
+					background-image: url('/images/presenter-switch-black.svg');
+				}
+			}
 		}
 	}
 }

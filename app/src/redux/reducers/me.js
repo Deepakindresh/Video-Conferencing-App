@@ -36,9 +36,9 @@ const me = (state = initialState, action) => {
 		}
 
 		case 'SET_ME': {
-			const { peerId, displayName, displayNameSet, device } = action.payload;
+			const { peerId, displayName, displayNameSet, presenter, device } = action.payload;
 
-			return { ...state, id: peerId, displayName, displayNameSet, device };
+			return { ...state, id: peerId, displayName, displayNameSet, presenter, device };
 		}
 
 		case 'SET_MEDIA_CAPABILITIES': {
@@ -90,6 +90,12 @@ const me = (state = initialState, action) => {
 			const { enabled } = action.payload;
 
 			return { ...state, audioMuted: enabled };
+		}
+
+		case 'SET_PRESENTER_STATE': {
+			const { enabled } = action.payload;
+
+			return { ...state, presenter: enabled };
 		}
 
 		case 'SET_RESTART_ICE_IN_PROGRESS': {

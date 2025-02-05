@@ -77,7 +77,7 @@ async function run() {
 	let roomId = urlParser.query.roomId;
 	let displayName =
 		urlParser.query.displayName || (cookiesManager.getUser() || {}).displayName;
-	let presenter = urlParser.query.presenter || cookiesManager.getPresenter() || 'false';
+	let presenter = cookiesManager.getCookiePresenter() || 'false';
 	const handlerName = urlParser.query.handlerName || urlParser.query.handler;
 	const forceTcp = urlParser.query.forceTcp === 'true';
 	const produce = urlParser.query.produce !== 'false';
@@ -172,6 +172,11 @@ async function run() {
 		displayName = randomName();
 	}
 
+
+	if (presenter !== true && presenter !== false) {
+		presenter = false;
+	}
+
 	// Get current device info.
 	const device = deviceInfo();
 
@@ -180,7 +185,7 @@ async function run() {
 	store.dispatch(stateActions.setRoomFaceDetection(faceDetection));
 
 	store.dispatch(
-		stateActions.setMe({ peerId, displayName, displayNameSet, device })
+		stateActions.setMe({ peerId, displayName, displayNameSet, presenter, device })
 	);
 
 	roomClient = new RoomClient({
