@@ -42,9 +42,9 @@ runDev()
 
 async function runDev() {
   const dev = process.env.DEV
-  if (!dev) {
-    return
-  }
+  // if (!dev) {
+  //   return
+  // }
 
   await waitPort({
     host,
@@ -58,10 +58,10 @@ async function runDev() {
     info: true,
   }
   const defaultProducer = {
-    consume: false,
+    consume: true,
   }
   const defaultConsumer = {
-    produce: false,
+    produce: true,
   }
 
   let producer = null

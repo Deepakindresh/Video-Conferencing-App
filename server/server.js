@@ -63,7 +63,7 @@ async function run()
 	await interactiveServer();
 
 	// Open the interactive client.
-	if (process.env.INTERACTIVE === 'true' || process.env.INTERACTIVE === '1')
+	// if (process.env.INTERACTIVE === 'true' || process.env.INTERACTIVE === '1')
 		await interactiveClient();
 
 	// Run a mediasoup Worker.
